@@ -1351,7 +1351,7 @@ function identify_guess(i, line, guess) {
     var gue = guess.split("");
     var icons = [];
     for (column = 0; column < TOTAL_COLUMNS; column++) {
-        guess_letters[i][gue[column]] = 0;
+        if (guess_letters[i][gue[column]] != 2 && guess_letters[i][gue[column]] != 1) guess_letters[i][gue[column]] = 0;
         acquireBox(i, line, column).style.backgroundColor = "rgb(24, 26, 27)";
         icons.push('\u2B1C');
     }
@@ -1805,7 +1805,7 @@ function render_bg_keys() {
 
     for (k in keys) {
         var keyGuessed = false
-        var keyColors = ["rgb(24, 26, 27)", "rgb(24, 26, 27)", "rgb(24, 26, 27)", "rgb(24, 26, 27)"]
+        var keyColors = ["rgb(24, 26, 27)", "rgb(24, 26, 27)", "rgb(24, 26, 27)", "rgb(24, 26, 27)","rgb(24, 26, 27)", "rgb(24, 26, 27)", "rgb(24, 26, 27)", "rgb(24, 26, 27)"]
         var colorOptions = ["#919191", "#ffcc00", "#00cc88"]
         for (var g = 0; g < keyColors.length; g++) {
             for (var i = 0; i < colorOptions.length; i++) {
@@ -1820,11 +1820,20 @@ function render_bg_keys() {
                 keyColors[g] = "#5c5c5c"
             }
         }
-        var bg = "linear-gradient(45deg, " + keyColors[0] + ", " + keyColors[0] + " 100%), linear-gradient(135deg, " + keyColors[2] + ", " + keyColors[2] + "), linear-gradient(225deg, " + keyColors[1] + ", " + keyColors[1] + ") , linear-gradient(225deg, " + keyColors[3] + ", " + keyColors[3] + ")"
+      
+        var bg = "linear-gradient(22.5deg, " + keyColors[0] + ", " + keyColors[0] + " 100%),"
++ " linear-gradient(67.5deg, " + keyColors[2] + ", " + keyColors[2] + "),"
++ " linear-gradient(112.5deg, " + keyColors[4] + ", " + keyColors[4] + "),"
++ " linear-gradient(157.5deg, " + keyColors[6] + ", " + keyColors[6] + "),"
++ " linear-gradient(202.5deg, " + keyColors[1] + ", " + keyColors[1] + "),"
++ " linear-gradient(247.5deg, " + keyColors[3] + ", " + keyColors[3] + "),"
++ " linear-gradient(292.5deg, " + keyColors[5] + ", " + keyColors[5] + "),"
++ " linear-gradient(337.5deg, " + keyColors[7] + ", " + keyColors[7] + ")"   
+        
         var key = acquire(keys[k])
         key.style.backgroundImage = bg
         key.style.backgroundSize = "50% 50%"
-        key.style.backgroundPosition = "0% 0%, 0% 100%, 100% 0%, 100% 100%"
+        key.style.backgroundPosition = "0% -50%, 0% 0%,0% 50%,0% 100%, 100% -50%,100% 0%,100% 50%,100% 100%"
         key.style.backgroundRepeat = "no-repeat"
         key.style.color = keyGuessed ? "black" : "white"
         // key.style.textShadow = keyGuessed ? "0 0 4px white" : ""
